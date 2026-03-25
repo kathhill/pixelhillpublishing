@@ -5,7 +5,10 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://pixelhillstudios.com",
+  // temp github pages deployment
+    site: 'https://kathhill.github.io',
+    base: '/pixelhillpublishing',
+    // end temp github page deployment
   integrations: [
     sitemap(),
     partytown({
