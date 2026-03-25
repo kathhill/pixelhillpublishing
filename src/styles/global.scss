@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-@import './variables.scss';
+@use "variables" as v;
 
 html {
-		color: $color-text;
+		color: v.$color-text;
 		font-family: "Jost Variable", sans-serif;
 		// font-size: 18px;
 		font-size: calc(15px + 0.390625vw);
@@ -64,7 +64,7 @@ p {
 }
 
 a {
-	color: $color-brand1;
+	color: v.$color-brand1;
 	text-decoration: none;
 	font-weight: 700;
 
@@ -129,7 +129,7 @@ dt {
 }
 
 .skip-link {
-	color: $color-text-reverse;
+	color: v.$color-text-reverse;
 	font-weight: bold;
 }
 
@@ -156,9 +156,9 @@ dt {
 }
 
 footer {
-	background: $color-black;
+	background: v.$color-black;
 	//box-shadow: 0px -10px 10px 0px rgba(0,0,0,0.75);
-	color: $color-text-reverse;
+	color: v.$color-text-reverse;
 	margin-top: auto;
 	padding: 1rem;
 	// position: fixed;
@@ -173,6 +173,6 @@ footer p {
 }
 
 footer a {
-	color: $color-text-reverse;
+	color: v.$color-text-reverse;
 	display: block;
 }
