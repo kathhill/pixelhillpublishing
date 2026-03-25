@@ -1,0 +1,136 @@
+<nav>
+	<label for="menu-toggle" class="hamburger-btn">
+		<input
+			type="checkbox"
+			id="menu-toggle"
+			aria-label="Display the menu"
+			aria-controls="menu"
+		/>
+	</label>
+	<ul id="menu">
+		<li><a href="/">Home</a></li>
+		<li><a href="/books">Books</a></li>
+		<li><a href="/authors">Authors</a></li>
+		<li><a href="/contact">About Us</a></li>
+	</ul>
+</nav>
+
+<style lang="scss">
+	:root {
+		--bar-width: 40px;
+		--bar-height: 4px;
+		--hamburger-gap: 5px;
+		--foreground: var(--color-text-reverse);
+		--background: #000;
+		--hamburger-margin: 8px;
+		--animation-timing: 200ms ease-in-out;
+		--hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+	}
+
+	nav {
+		display: flex;
+		padding-right: 0.75rem;
+
+		@media (min-width: 768px) {
+			padding-right: 2rem;
+		}
+
+		@media (min-width: 1200px) {
+			padding-right: 3rem;
+		}
+
+		.hamburger-btn {
+			--x-width: calc(var(--hamburger-height) * 1.41421356237);
+
+			display: flex;
+			flex-direction: column;
+			gap: var(--hamburger-gap);
+			width: max-content;
+			z-index: 2;
+			cursor: pointer;
+
+			&:has(input:checked) {
+				color: var(--foreground);
+				background: var(--background);
+			}
+
+			&::before,
+			&::after,
+			input {
+				content: "";
+				width: var(--bar-width);
+				height: var(--bar-height);
+				background-color: var(--foreground);
+				border-radius: 9999px;
+				transform-origin: left center;
+				transition:
+					opacity var(--animation-timing),
+					width var(--animation-timing),
+					rotate var(--animation-timing),
+					translate var(--animation-timing),
+					background-color var(--animation-timing);
+			}
+
+			input {
+				appearance: none;
+				padding: 0;
+				margin: 0;
+				outline: none;
+				pointer-events: none;
+			}
+
+			&:has(input:checked)::before {
+				rotate: 45deg;
+				width: var(--x-width);
+				translate: 0 calc(var(--bar-height) / -2);
+			}
+
+			&:has(input:checked)::after {
+				rotate: -45deg;
+				width: var(--x-width);
+				translate: 0 calc(var(--bar-height) / 2);
+			}
+
+			input:checked {
+				opacity: 0;
+				width: 0;
+			}
+		}
+
+		ul {
+			background: #000;
+			margin-left: auto;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			inset: 0 0 0;
+			padding: 40px;
+			margin: 0;
+			align-items: center;
+			justify-content: center;
+			gap: 30px;
+			transition-timing-function: cubic-bezier(10, 2, 3, 1);
+			transform: translateX(100%);
+			transition: translate var(--animation-timing);
+			translate: 0;
+			list-style: none;
+			position: fixed;
+
+			li {
+				a {
+					padding: 10px 20px;
+					text-decoration: none;
+					font-size: 2rem;
+					font-weight: 300;
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+
+		.hamburger-btn:has(input:checked) + ul {
+			translate: -100%;
+		}
+	}
+</style>

@@ -1,22 +1,120 @@
+---
+import "@fontsource/urbanist";
+import "@fontsource-variable/jost";
+import "../styles/global.scss";
+import { Image } from "astro:assets";
+import icon from "../assets/icon.png";
+import Navigation from "../components/Navigation.astro";
+import External from "../components/External.astro";
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title } = Astro.props;
+const { description } = Astro.props;
+
+const year = new Date().getFullYear();
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
+		<External />
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
 	</head>
 	<body>
+		<a class="sr-only focus:not-sr-only skip-link" href="#about"
+			>Skip to main content</a
+		>
+		<header>
+			<a href="/" rel="home">
+				<Image class="icon" src={icon} alt="Pixel Hill" />
+			</a>
+			<Navigation />
+		</header>
+
 		<slot />
-	</body>
+
+		<footer>
+			<p>
+				&copy;<span id="footer-year">{year}</span>&nbsp;Pixel Hill Publishing.
+				All rights reserved.
+			</p>
+		</footer>
+	</body><script is:inline data-astro-rerun>
+		document.getElementById("footer-year").innerText = new Date().getFullYear();
+
+		const menu = document.getElementById("menu");
+		const menuToggle = document.getElementById("menu-toggle");
+
+		menu.addEventListener("click", handleMenuClick);
+
+		function handleMenuClick(event) {
+			if (event.target instanceof HTMLAnchorElement) {
+				menuToggle.checked = false;
+			}
+		}
+	</script>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
+<style lang="scss" is:global>
+	:root {
+		--color-brand-green: #025306;
+		--color-darkest-green: #172d16;
+		--color-alt-green: #77ab3c;
+		--color-alt-green-light: #c7eb9d;
+		--color-text-reverse: #fff;
+		--gradient-greens: linear-gradient(
+			var(--color-brand-green),
+			var(--color-alt-green),
+			var(--color-alt-green-light)
+		);
+		--gradient-brand-to-light: linear-gradient(
+			var(--color-brand-green),
+			var(--color-alt-green)
+		);
+		--gradient-brand-to-dark: linear-gradient(
+			var(--color-brand-green),
+			var(--color-darkest-green)
+		);
+		--gradient-dark-to-brand: linear-gradient(
+			var(--color-darkest-green),
+			var(--color-brand-green)
+		);
+		--headerOpacity: 1;
+		--headerScale: 1;
+		--shortHeight: var();
+	}
+
+	header {
+		// temporary style:
+		display: none;
+		background: #000;
+		box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.75);
+		// display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0;
+		position: fixed;
 		width: 100%;
-		height: 100%;
+		z-index: 10;
+
+		.icon {
+			height: 5rem;
+			padding: 0.5rem;
+			width: 5rem;
+		}
+
+		footer {
+			display: none;
+		}
 	}
 </style>

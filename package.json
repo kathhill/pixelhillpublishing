@@ -4,11 +4,23 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "start": "astro dev",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.4.0"
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/partytown": "^2.1.2",
+    "@astrojs/sitemap": "^3.2.1",
+    "@fontsource-variable/jost": "^5.1.1",
+    "@fontsource/urbanist": "^5.0.20",
+    "astro": "^5.4.0",
+    "axios": "^1.8.1",
+    "sass": "^1.77.4",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "prettier-plugin-astro": "^0.14.1"
   }
 }
