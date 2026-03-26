@@ -98,10 +98,6 @@ a {
 	}
 }
 
-footer p {
-	font-size: 1rem;
-}
-
 img {
 	max-width: 100%;
 	height: auto;
@@ -157,11 +153,9 @@ dt {
 
 footer {
 	background: v.$color-black;
-	//box-shadow: 0px -10px 10px 0px rgba(0,0,0,0.75);
 	color: v.$color-text-reverse;
 	margin-top: auto;
 	padding: 1rem;
-	// position: fixed;
 	bottom: 0;
 	width: 100%
 }

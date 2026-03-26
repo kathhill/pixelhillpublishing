@@ -40,7 +40,6 @@ import logo from "../assets/pixel-hill-publishing-logo-reverse.svg";
 			background-position: center;
 			height: 100vh;
 			width: 100vw;
-			max-height: 696px;
 			position: relative;
 			display: flex;
 
@@ -54,6 +53,7 @@ import logo from "../assets/pixel-hill-publishing-logo-reverse.svg";
 			}
 
 			.viewport-header {
+				animation: 10s ease-in 0s 1 fadeIn;
 				padding: 0.125rem;
 				display: flex;
 				align-items: center;
@@ -62,36 +62,8 @@ import logo from "../assets/pixel-hill-publishing-logo-reverse.svg";
 				transform: scale(var(--headerScale));
 				width: 100%;
 
-				@media (min-width: 1024px) {
-					animation: 10s ease-in 0s 1 fadeIn;
-					margin: 0 1rem;
-
-					@media (min-height: 600px) and (max-height: 820px) {
-						margin-top: 0%;
-					}
-				}
-
-				@media (min-width: 1280px) {
-					@media (min-height: 600px) and (max-height: 820px) {
-						top: 10%;
-					}
-				}
-
-				@media (min-width: 1366px) {
-					margin: 7% 1rem;
-				}
-
-				@media (min-width: 1700px) {
-					margin: 12% 1rem;
-					width: auto;
-				}
-
-				@media (min-width: 2200px) {
-					margin: 7% 1rem;
-				}
-
 				.logo {
-					width: 50%;
+					width: 100%;
 					max-width: 1116px;
 					height: auto;
 				}
