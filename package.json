@@ -18,6 +18,7 @@
     "astro": "^5.4.0",
     "axios": "^1.8.1",
     "sass": "^1.77.4",
+    "tailwindcss": "^4.3.1",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
