@@ -1,0 +1,94 @@
+---
+import "../styles/global.css";
+import "../styles/global.scss";
+// import External from "../components/External.astro";
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title } = Astro.props;
+const { description } = Astro.props;
+
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- <External /> -->
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/x-icon" href="/favicon.svg" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<a class="sr-only focus:not-sr-only skip-link" href="#about">
+			Skip to main content
+		</a>
+
+		<slot />
+
+		<footer>
+			<p>
+				&copy;<span id="footer-year">{year}</span>&nbsp;Pixel Hill Publishing.
+				All rights reserved.
+			</p>
+		</footer>
+		<script is:inline data-astro-rerun>
+			document.getElementById("footer-year").innerText =
+				new Date().getFullYear();
+		</script>
+		<script>
+			const bw = document.getElementById("bw");
+			const bwImages = bw?.querySelectorAll("img");
+			let timeOut;
+
+			bw?.addEventListener("mouseenter", bwToColor);
+
+			bw?.addEventListener("mouseleave", () => {
+				timeOut = setTimeout(() => {
+					colorToBw();
+				}, 3000);
+			});
+
+			function bwToColor() {
+				bwImages?.forEach((bwImage) => {
+					bwImage.src = bwImage.src.replace("_b_w_", "_color_");
+				});
+			}
+
+			function colorToBw() {
+				bwImages?.forEach((bwImage) => {
+					bwImage.src = bwImage.src.replace("_color_", "_b_w_");
+				});
+			}
+		</script>
+	</body>
+</html>
+
+<style lang="scss" is:global>
+	:root {
+		--color-text-reverse: #fff;
+		--headerOpacity: 1;
+		--headerScale: 1;
+		--shortHeight: var();
+	}
+
+	body {
+		background: url(../assets/bg-underwater.png);
+		background-size: cover;
+		background-position: center;
+
+		p {
+			font-size: 1rem;
+		}
+
+		button {
+			cursor: pointer;
+		}
+	}
+</style>

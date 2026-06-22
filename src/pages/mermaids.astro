@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/LayoutLanding.astro";
+import DownloadForm from "../components/DownloadForm.astro";
+---
+
+<Layout
+	title="Mermaids Coloring & Dot-to-Dot Bonus| Pixel Hill Publishing"
+	description=""
+>
+	<main
+		class="mx-auto mt-10 flex flex-col justify-center items-center w-full max-w-3xl"
+	>
+		<h1 class="text-center">Mermaids Coloring & Dot-to-Dot Bonus</h1>
+		<section class="relative">
+			<div class="flex justify-center" id="bw">
+				<img
+					src="/mermaids/mermaid_b_w_3_3.png"
+					alt="Mermaid"
+					width="300"
+					loading="eager"
+				/>
+				<img
+					src="/mermaids/mermaid_b_w_14_14.png"
+					alt="Mermaid"
+					width="300"
+					loading="eager"
+				/>
+				<img
+					src="/mermaids/mermaid_b_w_19_19.png"
+					alt="Mermaid"
+					width="300"
+					loading="eager"
+				/>
+			</div>
+		</section>
+		<section class="">
+			<p>
+				As a thank you for your purchase of the Mermaids Coloring & Dot-to-Dot
+				book, we've included a digital download of 30 mermaid coloring pages as
+				a bonus for you to enjoy. Simply print the pages or open them in your
+				favorite coloring app for hours of fun.
+			</p>
+		</section>
+
+		<section class="">
+			<DownloadForm />
+		</section>
+	</main>
+</Layout>
