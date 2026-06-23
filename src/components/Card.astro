@@ -1,0 +1,44 @@
+---
+import type { ImageMetadata } from "astro";
+import { triggerEvent } from "astro/virtual-modules/transitions-events.js";
+import { Image } from "astro:assets";
+
+const { href, title, imagePath, altText } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	"/src/assets/*.{jpg,png,svg}",
+);
+if (!images[imagePath])
+	throw new Error(
+		`"${imagePath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`,
+	);
+---
+
+<li class="card">
+	<a href={href} class="flex justify-center items-center flex-col">
+		<h3>{title}</h3>
+		<Image
+			class="shadow-xl/30 w-full md:w-1/2"
+			src={images[imagePath]()}
+			alt={altText}
+		/>
+	</a>
+</li>
+
+<style lang="scss">
+	.card {
+		border: 1px solid #5b78ef;
+		border-radius: 8px;
+		padding: 1rem;
+		transition: all 0.2s;
+
+		&:hover {
+			opacity: 75%;
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+	}
+</style>
