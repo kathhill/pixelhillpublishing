@@ -1,6 +1,5 @@
 ---
-import "@fontsource/urbanist";
-import "@fontsource-variable/jost";
+import "../styles/global.css";
 import "../styles/global.scss";
 import { Image } from "astro:assets";
 import icon from "../assets/icon.png";
@@ -33,10 +32,12 @@ const year = new Date().getFullYear();
 		<a class="sr-only focus:not-sr-only skip-link" href="#about"
 			>Skip to main content</a
 		>
-		<header>
-			<a href="/" rel="home">
-				<Image class="icon" src={icon} alt="Pixel Hill" />
-			</a>
+		<header id="header">
+			<h1>
+				<a href="/" rel="home">
+					<Image class="icon" src={icon} alt="Pixel Hill" />
+				</a>
+			</h1>
 			<Navigation />
 		</header>
 
@@ -62,43 +63,30 @@ const year = new Date().getFullYear();
 			}
 		}
 	</script>
+	<script>
+		window.addEventListener("scroll", () => {
+			const header = document.getElementById("header");
+			if (window.scrollY > 100) {
+				// Threshold in pixels
+				header?.classList.add("scrolled");
+			} else {
+				header?.classList.remove("scrolled");
+			}
+		});
+	</script>
 </html>
 
 <style lang="scss" is:global>
 	:root {
-		--color-brand-green: #025306;
-		--color-darkest-green: #172d16;
-		--color-alt-green: #77ab3c;
-		--color-alt-green-light: #c7eb9d;
 		--color-text-reverse: #fff;
-		--gradient-greens: linear-gradient(
-			var(--color-brand-green),
-			var(--color-alt-green),
-			var(--color-alt-green-light)
-		);
-		--gradient-brand-to-light: linear-gradient(
-			var(--color-brand-green),
-			var(--color-alt-green)
-		);
-		--gradient-brand-to-dark: linear-gradient(
-			var(--color-brand-green),
-			var(--color-darkest-green)
-		);
-		--gradient-dark-to-brand: linear-gradient(
-			var(--color-darkest-green),
-			var(--color-brand-green)
-		);
 		--headerOpacity: 1;
 		--headerScale: 1;
 		--shortHeight: var();
 	}
 
 	header {
-		// temporary style:
-		display: none;
-		background: #000;
-		box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.75);
-		// display: flex;
+		background: transparent;
+		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
@@ -108,9 +96,14 @@ const year = new Date().getFullYear();
 		z-index: 10;
 
 		.icon {
-			height: 5rem;
+			height: 4rem;
 			padding: 0.5rem;
-			width: 5rem;
+			width: 4rem;
+		}
+
+		&.scrolled {
+			background: #000;
+			box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.75);
 		}
 	}
 </style>
