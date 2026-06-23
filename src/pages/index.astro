@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import logo from "../assets/pixel-hill-publishing-logo-reverse.svg";
+import { Icon } from "astro-icon/components";
+import Card from "../components/Card.astro";
 ---
 
 <Layout
@@ -9,91 +11,161 @@ import logo from "../assets/pixel-hill-publishing-logo-reverse.svg";
 	description="Independent publisher specializing in low and medium content books."
 >
 	<main>
-		<section class="hero" id="intro">
-			<div class="viewport-header">
+		<section class="hero flex flex-col items-center justify-center" id="intro">
+			<div class="viewport-header basis-[90vh]">
 				<Image class="logo" src={logo} alt="Pixel Hill Publishing logo" />
 			</div>
+
+			<div class="arrow-down text-white basis-[10vh]">
+				<Icon
+					name="simple-line-icons:arrow-down-circle"
+					size="4rem"
+					class="text-white animate-bounce"
+				/>
+			</div>
 		</section>
-	</main>
-</Layout>
+		<section class="bg-brand1 p-8 h-screen">
+			<h2 class="text-center">Out Now</h2>
+			<ul class="flex flex-wrap md:flex-nowrap gap-4 justify-center">
+				<Card
+					href=""
+					title="Enchanted Fantasies Coloring Book"
+					imagePath="/src/assets/enchanted.png"
+					altText=""
+				/>
+				<Card
+					href=""
+					title="Sudoku Large Print Easy-to-Medium"
+					imagePath="/src/assets/sudoku1.png"
+					altText=""
+				/>
+				<Card
+					href=""
+					title="Sudoku Large Print Medium-to-Hard"
+					imagePath="/src/assets/sudoku2.png"
+					altText=""
+				/>
+				<Card
+					href=""
+					title="Mermaids Coloring Book"
+					imagePath="/src/assets/mermaids.png"
+					altText=""
+				/>
+			</ul>
+		</section>
+		<section class="bg-brand2 p-8 h-screen">
+			<h2 class="text-center">Coming Soon...</h2>
+			<ul class="flex flex-wrap md:flex-nowrap gap-4 justify-center">
+				<Card
+					href=""
+					title="Little Dragons Coloring Book"
+					imagePath="/src/assets/little-dragons-placeholder.png"
+					altText=""
+				/>
+				<Card
+					href=""
+					title="Birds Coloring Book"
+					imagePath="/src/assets/birds-placeholder.png"
+					altText=""
+				/>
+				<Card
+					href=""
+					title="Horses Coloring Book"
+					imagePath="/src/assets/horses-placeholder.png"
+					altText=""
+				/>
+				<Card
+					href=""
+					title="Big Book of Animals Coloring Book"
+					imagePath="/src/assets/bbanimals-placeholder.png"
+					altText=""
+				/>
+			</ul>
+		</section>
 
-<style lang="scss">
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-		}
-		to {
-			opacity: 1;
-		}
-	}
-
-	main {
-		margin: auto;
-		padding: 0;
-		line-height: 1.6;
-
-		.hero {
-			background-image: url(../assets/bg.jpg);
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-attachment: fixed;
-			background-position: center;
-			height: 100vh;
-			width: 100vw;
-			position: relative;
-			display: flex;
-
-			.bg-mobile {
-				position: absolute;
-				top: 0;
-
-				@media (min-width: 1024px) {
-					display: none;
+		<style lang="scss">
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
 				}
 			}
 
-			.viewport-header {
-				animation: 10s ease-in 0s 1 fadeIn;
-				padding: 0.125rem;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				opacity: var(--headerOpacity);
-				transform: scale(var(--headerScale));
-				width: 100%;
+			main {
+				margin: auto;
+				padding: 0;
+				line-height: 1.6;
 
-				.logo {
-					width: 100%;
-					max-width: 1116px;
-					height: auto;
+				.hero {
+					background-image: url(../assets/bg.jpg);
+					background-size: cover;
+					background-repeat: no-repeat;
+					background-attachment: fixed;
+					background-position: center;
+					height: 100vh;
+					width: 100vw;
+					position: relative;
+
+					.bg-mobile {
+						position: absolute;
+						top: 0;
+
+						@media (min-width: 1024px) {
+							display: none;
+						}
+					}
+
+					.viewport-header {
+						animation: 10s ease-in 0s 1 fadeIn;
+						padding: 0.125rem;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						opacity: var(--headerOpacity);
+						transform: scale(var(--headerScale));
+						width: 100%;
+
+						.logo {
+							width: 100%;
+							max-width: 1116px;
+							height: auto;
+						}
+					}
+				}
+				.arrow-down {
+					animation: 10s ease-in 0s 1 fadeIn;
 				}
 			}
-		}
-	}
-</style>
-<script>
-	const video = document.getElementById("video");
+		</style>
+		<script>
+			const video = document.getElementById("video");
 
-	document.addEventListener("DOMContentLoaded", function addAutoplay() {
-		if (window.innerWidth < 1024) {
-			video?.removeAttribute("autoplay");
-		}
-	});
-</script>
+			document.addEventListener("DOMContentLoaded", function addAutoplay() {
+				if (window.innerWidth < 1024) {
+					video?.removeAttribute("autoplay");
+				}
+			});
+		</script>
 
-<script type="text/javascript">
-	function configureAhoy() {
-		ahoy.configure({
-			visitsUrl: "https://usebasin.com/ahoy/visits",
-			eventsUrl: "https://usebasin.com/ahoy/events",
-			page: "023020682506" /* Use your form id here */,
-		});
-		ahoy.trackView();
-		ahoy.trackSubmits();
-	}
-</script>
-<script
-	src="https://cdn.jsdelivr.net/npm/ahoy.js@0.3.9/dist/ahoy.min.js"
-	async
-	defer
-	onload="configureAhoy()"></script>
+		<script type="text/javascript">
+			function configureAhoy() {
+				ahoy.configure({
+					visitsUrl: "https://usebasin.com/ahoy/visits",
+					eventsUrl: "https://usebasin.com/ahoy/events",
+					page: "023020682506" /* Use your form id here */,
+				});
+				ahoy.trackView();
+				ahoy.trackSubmits();
+			}
+		</script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/ahoy.js@0.3.9/dist/ahoy.min.js"
+			async
+			defer
+			onload="configureAhoy()"
+		>
+		</script>
+	</main></Layout
+>
