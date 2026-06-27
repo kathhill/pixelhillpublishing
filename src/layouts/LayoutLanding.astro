@@ -45,12 +45,11 @@ const year = new Date().getFullYear();
 		<script>
 			const bw = document.getElementById("bw");
 			const bwImages = bw?.querySelectorAll("img");
-			let timeOut;
 
 			bw?.addEventListener("mouseenter", bwToColor);
 
 			bw?.addEventListener("mouseleave", () => {
-				timeOut = setTimeout(() => {
+				setTimeout(() => {
 					colorToBw();
 				}, 3000);
 			});
@@ -82,10 +81,6 @@ const year = new Date().getFullYear();
 		background: url(../assets/bg-underwater.png);
 		background-size: cover;
 		background-position: center;
-
-		p {
-			font-size: 1rem;
-		}
 
 		button {
 			cursor: pointer;

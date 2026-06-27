@@ -2,6 +2,12 @@
 
 @use "variables" as v;
 
+html,
+body {
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
 html {
 		color: v.$color-text;
 		font-family: "Jost Variable", sans-serif;
@@ -21,6 +27,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	padding: 0;
 
 }
 
